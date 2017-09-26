@@ -1,27 +1,31 @@
-# bambora-bank-client
+# Vue/VueX + JSX boilerplate
 
-> Web client for Bambora Bank
+To run:
 
-## Build Setup
+    npm install
+    npm start
+    
+## Good to know
 
-``` bash
-# install dependencies
-npm install
+### Alias
+There's an alias added for importing files from **src** mapped to ~
+This allows you to always start from src-folder and not hanving to ../../../../ your way up.
 
-# serve with hot reload at localhost:8080
-npm run dev
+Example:
 
-# build for production with minification
-npm run build
+    import myComponent from '~/components/myComponent'
 
-# build for production and view the bundle analyzer report
-npm run build --report
+**equals**
 
-# run unit tests
-npm run unit
+    import myComponent from 'src/components/myComponent'
 
-# run all tests
-npm test
-```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+### JSX
+The project uses <a href="https://vuejs.org/v2/guide/render-function.html" target="_blank">jsx</a> instead of the original vue-templates. Along with this, we use external stylesheets with SASS instead of using scoped styles for each component.
+
+### Internationalization
+
+Language is governed by the url-paramater "lang". So for english and swedish are supported. Fallback is to use english.
+To use another language: 
+
+    http://localhost:3000?lang=sv
