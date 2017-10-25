@@ -1,3 +1,5 @@
+var webpack = require('webpack')
+var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 var path = require('path')
 var utils = require('./utils')
 var config = require('../config')
@@ -6,6 +8,22 @@ var vueLoaderConfig = require('./vue-loader.conf')
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
+
+var apiHost
+var setupAPI = () => {
+  switch (process.env.NODE_ENV) {
+    case 'production':
+      apiHost = "'/api'"
+      break
+    case 'development':
+      apiHost = "'http://localhost:3000/api'"
+      break
+    default:
+      apiHost = "'http://localhost:9902/api'"
+      break
+  }
+}
+setupAPI()
 
 module.exports = {
   entry: {
@@ -31,12 +49,18 @@ module.exports = {
       'components': resolve('src/components')
     }
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      __API__: apiHost
+    }),
+    new CaseSensitivePathsPlugin()
+  ],
   module: {
     rules: [
       {
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
-        enforce: "pre",
+        enforce: 'pre',
         include: [resolve('src'), resolve('test')],
         options: {
           formatter: require('eslint-friendly-formatter')

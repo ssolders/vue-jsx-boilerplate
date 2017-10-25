@@ -10,7 +10,6 @@ import './App.scss'
 sync(store, router)
 
 const App = {
-  name: 'app',
   store,
   render (h) {
     return (

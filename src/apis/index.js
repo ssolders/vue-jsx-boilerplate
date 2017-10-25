@@ -1,32 +1,25 @@
-import Vue from 'vue'
+import Axios from 'axios'
 
-export const get = async (url, data, feedback = false) => {
-  try {
-    let res = await new Promise((resolve, reject) => {
-      Vue.http.get(url, data).then((res) => {
-        resolve(res)
-      }, (err) => {
-        reject(err)
-      })
-    })
-    if (feedback) {
-      return res.data
-    }
-    if (res.status === 200) {
-      if (res.data.flag === 0) {
-        return res.data
-      } else {
-        alert(res.data.msg)
-      }
-    } else {
-      alert('Oops, 出错了请稍后再试')
-    }
-  } catch (e) {
-    alert('Oops, 出错了请稍后再试')
-    console.log(e)
-  }
+const request = (method, url, data) => {
+  return Axios.request({ method, url, data })
 }
 
-const BASE_URL = 'https://api.github.com'
+const get = (url, data) => {
+  return request('GET', url)
+}
 
-export const GET_USER_URL = BASE_URL + '/users'
+// post request + adds the token saved in store as url-param
+const post = (url, payload) => {
+  return request('POST', url, payload)
+}
+
+
+// __API__ is defined inside webpack.base.config and depends on current node_env (development or production)
+export const onlineBankApi = {
+  buildUrl (path) {
+    return `${__API__}/${path}`
+  },
+  getInitialContext (token) {
+    return get(this.buildUrl('context'));
+  }
+}
