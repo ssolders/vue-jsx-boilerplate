@@ -1,8 +1,8 @@
 {
-  "name": "bambora-bank-client",
+  "name": "vue-jsx-boilerplate",
   "version": "1.0.0",
-  "description": "Web client for Bambora Bank",
-  "author": "ssolders <simon.solders@devcode.se>",
+  "description": "Boilerplate Vuex and JSX",
+  "author": "ssolders <simon.solders@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
