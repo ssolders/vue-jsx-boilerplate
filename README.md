@@ -7,6 +7,10 @@ To run:
     
 ## Good to know
 
+### API Endpoint
+A global url **\_\_API\_\_** is set in webpackconfig. Depending on if **node_env** is development, production or test you can set this differently. 
+See ````/build/webpack.base.config.js````
+
 ### Alias
 There's an alias added for importing files from **src** mapped to ~
 This allows you to always start from src-folder and not hanving to ../../../../ your way up.
