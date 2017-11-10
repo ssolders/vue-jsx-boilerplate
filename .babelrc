@@ -1,0 +1,8 @@
+{
+    "presets": ["es2015", "vue", "stage-2"],
+    "plugins": [
+      "jsx-event-modifiers",
+      "transform-vue-jsx",
+      "transform-runtime"
+    ]
+}
